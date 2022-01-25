@@ -6,5 +6,5 @@ function getEmployeeByName(employeeName) {
   || employeeName.includes(nome.lastName));
   return achaFuncionario;
 }
-console.log(getEmployeeByName('bethea')); // Obs: Lembrar que o includes é case sensitive
+console.log(getEmployeeByName('Bethea')); // Obs: Lembrar que o includes é case sensitive.
 module.exports = getEmployeeByName;

@@ -9,7 +9,7 @@ function countEntrants(entrants) {
 }
 
 function calculateEntry(entrants) {
-  if (entrants === undefined || entrants.length === undefined) return 0;
+  if (entrants === undefined || Object.keys(entrants).length === 0) return 0; // Refatorei depois de ler a postagem https://stackoverflow.com/questions/40615844/why-undefined-is-not-equal-to-zero-in-javascript
   const quantidade = countEntrants(entrants);
   const totalChild = quantidade.child * data.prices.child;
   const totalAdult = quantidade.adult * data.prices.adult;
