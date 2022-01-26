@@ -14,9 +14,12 @@ function countAnimals(animal) {
     return obj;
   }
   if (animal.sex === undefined) {
-    return species.residents.length;
+    const especie = data.species.find((index) => animal.specie === index.name); // Demorei um pouco pois estava procurando 'specie' no arquivo data.
+    return especie.residents.length;
   }
+  const nomeEspecie = data.species.find((index) => animal.specie === index.name); // console.log(animal.specie);
+  const sexoTotal = nomeEspecie.residents.filter((index) => index.sex === animal.sex); // Filtrando o sexo dos animais com base em 'animal.sex' console.log(animal.sex);
+  return sexoTotal.length; // .leangth para não retornar o array e objs
 }
-
-console.log(countAnimals());
+console.log(countAnimals({ specie: 'lions', sex: 'male' }));
 module.exports = countAnimals;
