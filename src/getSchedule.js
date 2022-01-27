@@ -24,6 +24,7 @@ const objSemana = {
 const animaisNome = species.map((index) => index.name); // Fiz o map para retornar um unico array de nome de animais
 console.log(animaisNome);
 
+// Para conseguir realizar a refatoração, foi consultado o PR da aluna Debora Serra. Isso me ajudou a resolver o segundo if da função, em especial.
 function getSchedule(scheduleTarget) {
   if (!scheduleTarget) return objSemana; // Não passando nada é retornada a agenda completa
   if (Object.keys(hours).some((index) => scheduleTarget === index)) {
