@@ -1,14 +1,19 @@
 const data = require('../data/zoo_data');
 
-function employee(pessoa) {
-  const nomeID = data.employees.find((index) => pessoa.name === index.firstName // Pelo find, vou ter como retorno o objeto com base no primeiro elemento que satisfaça as condições passadas
+function validacao(pessoa) {
+  const valida = data.employees.find((index) => pessoa.name === index.firstName
   || pessoa.name === index.lastName || pessoa.id === index.id);
+  return valida;
+}
+
+function employee(pessoa) {
+  const funcValidacao = validacao(pessoa);
   const objetoFuncionario = {
-    id: nomeID.id,
-    fullName: `${nomeID.firstName} ${nomeID.lastName}`,
-    species: ((nomeID.responsibleFor.map((id) => data.species
+    id: funcValidacao.id,
+    fullName: `${funcValidacao.firstName} ${funcValidacao.lastName}`,
+    species: ((funcValidacao.responsibleFor.map((id) => data.species
       .find((specie) => specie.id === id)))).map((element) => element.name),
-    locations: ((nomeID.responsibleFor.map((id) => data.species
+    locations: ((funcValidacao.responsibleFor.map((id) => data.species
       .find((specie) => specie.id === id)))).map((element) => element.location),
   };
   return objetoFuncionario;
@@ -24,12 +29,6 @@ function todos() {
       .find((specie) => specie.id === id)))).map((element) => element.location),
   }));
   return todosFuncionarios;
-}
-
-function validacao(pessoa) {
-  const test = data.employees.find((index) => pessoa.name === index.firstName // Pelo find, vou ter como retorno o objeto com base no primeiro elemento que satisfaça as condições passadas
-  || pessoa.name === index.lastName || pessoa.id === index.id);
-  return test;
 }
 
 function getEmployeesCoverage(parametro) {
