@@ -1,12 +1,12 @@
 const data = require('../data/zoo_data');
 
-function validacao(pessoa) {
-  const valida = data.employees.find((index) => pessoa.name === index.firstName
-  || pessoa.name === index.lastName || pessoa.id === index.id);
+const validacao = (pessoa) => {
+  const valida = data.employees.find((index) => index.firstName === pessoa.name
+  || index.lastName === pessoa.name || index.id === pessoa.id);
   return valida;
-}
+};
 
-function employee(pessoa) {
+const employee = (pessoa) => {
   const funcValidacao = validacao(pessoa);
   const objetoFuncionario = {
     id: funcValidacao.id,
@@ -17,9 +17,9 @@ function employee(pessoa) {
       .find((specie) => specie.id === id)))).map((element) => element.location),
   };
   return objetoFuncionario;
-}
+};
 
-function todos() {
+const pessoasFuncionarias = () => {
   const todosFuncionarios = data.employees.map((index) => ({
     id: index.id,
     fullName: `${index.firstName} ${index.lastName}`,
@@ -29,15 +29,15 @@ function todos() {
       .find((specie) => specie.id === id)))).map((element) => element.location),
   }));
   return todosFuncionarios;
-}
+};
 
-function getEmployeesCoverage(parametro) {
+const getEmployeesCoverage = (parametro) => {
   if (parametro) {
     if (validacao(parametro)) return employee(parametro);
     throw new Error('Informações inválidas');
   }
-  if (!parametro) return todos();
-}
+  if (!parametro) return pessoasFuncionarias();
+};
 
 console.log(getEmployeesCoverage({ name: 'Sharonda' }));
 
